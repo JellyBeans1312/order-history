@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class PurchaseForm extends Component {
+export class PurchaseForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -11,6 +11,10 @@ class PurchaseForm extends Component {
     }
   }
 
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
   render() {
     return (
       <form>
@@ -19,24 +23,28 @@ class PurchaseForm extends Component {
           name='imgUrl'
           placeholder='Img Url Here'
           value={this.state.imgUrl}
+          onChange={this.handleChange}
           />
           <input
           type='text'
           name='name'
-          placeholder='Img Url Here'
+          placeholder='Name of purchase'
           value={this.state.name}
+          onChange={this.handleChange}
           />
           <input
           type='text'
           name='description'
-          placeholder='Img Url Here'
+          placeholder='Description'
           value={this.state.description}
+          onChange={this.handleChange}
           />
           <input
           type='text'
           name='price'
-          placeholder='Img Url Here'
+          placeholder='Price'
           value={this.state.price}
+          onChange={this.handleChange}
           />
           <button>Add Purchase</button>
       </form>
