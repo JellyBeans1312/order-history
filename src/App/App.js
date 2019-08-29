@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import CardContainer from '../CardContainer/CardContainer'
 
 class App extends Component {
   constructor() {
@@ -17,8 +18,6 @@ class App extends Component {
     .catch(error => this.setState({error: 'There was an issue gathering your purchases'}))
   }
   render() {
-    console.log(this.state.purchases);
-    
     return (
       <div className="App">
         <header>
@@ -27,8 +26,9 @@ class App extends Component {
 
           </div>
         </header>
+        {this.state.error && <h1>{this.state.error}</h1>}
         <div className='purchase-container'>
-
+          <CardContainer purchases={this.state.purchases}/>
         </div>
       </div>
     );
