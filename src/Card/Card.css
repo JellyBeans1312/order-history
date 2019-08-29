@@ -1,0 +1,18 @@
+article {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  background-color: white;
+  margin: 10px;
+}
+img {
+  height: 75px;
+}
+
+h1 {
+  font-size: 1rem;
+}
+
+p {
+  width: 50%
+}
