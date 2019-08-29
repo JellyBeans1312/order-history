@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class PurchaseForm extends Component{
+class PurchaseForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -38,7 +38,10 @@ class PurchaseForm extends Component{
           placeholder='Img Url Here'
           value={this.state.price}
           />
+          <button>Add Purchase</button>
       </form>
     )
   }
 }
+
+export default PurchaseForm;

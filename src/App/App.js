@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import CardContainer from '../CardContainer/CardContainer';
-import PurchaseForm from '../PurchaseForm/PurchaseForm';
+import { PurchaseForm } from '../PurchaseForm/PurchaseForm';
 
 class App extends Component {
   constructor() {
@@ -24,7 +24,7 @@ class App extends Component {
         <header>
           <h1 className='app-title'>My Order History</h1>
           <div className='purchase-form'>
-
+            <PurchaseForm />
           </div>
         </header>
         {this.state.error && <h1>{this.state.error}</h1>}
