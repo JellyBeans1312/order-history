@@ -18,6 +18,10 @@ export class PurchaseForm extends Component {
       id: Date.now()
     }
     this.props.addPurchaseToState(newPurchase)
+    this.clearForm()
+  }
+
+  clearForm = () => {
     this.setState({ imgUrl: '', name: '', price: '', description: ''})
   }
 
