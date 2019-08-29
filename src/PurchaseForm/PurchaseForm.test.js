@@ -41,6 +41,22 @@ describe('PurchaseForm', () => {
   });
 
   it('should call handle change when change happens', () => {
+    const mockImg = { target: { name: 'imgUrl', value: 'http://something.org' } };
+    const mockName = { target: { name: 'name', value: 'i am a thing ' } };
+    const mockDescription = { target: { name: 'description', value: 'i am a description of the thing' } };
+    const mockPrice = { target: { name: 'price', value: 1000 } };
     
+    wrapper.instance().handleChange = jest.fn();
+    wrapper.instance().forceUpdate();
+    wrapper.find('[name="imgUrl"]').simulate('change', mockImg);
+    wrapper.find('[name="name"]').simulate('change', mockName);
+    wrapper.find('[name="description"]').simulate('change', mockDescription);
+    wrapper.find('[name="price"]').simulate('change', mockPrice);
+
+
+    expect(wrapper.instance().handleChange).toHaveBeenCalledWith(mockImg);
+    expect(wrapper.instance().handleChange).toHaveBeenCalledWith(mockName);
+    expect(wrapper.instance().handleChange).toHaveBeenCalledWith(mockDescription);
+    expect(wrapper.instance().handleChange).toHaveBeenCalledWith(mockPrice);
   })
 });
