@@ -14,6 +14,20 @@ class App extends Component {
 
   addPurchase = newPurchase => {
     this.setState({ purchases: [...this.state.purchases, newPurchase] })
+    this.postPurchase(newPurchase)
+  }
+
+  postPurchase = newPurchase => {
+    console.log(newPurchase)
+    fetch('http://localhost:3001/api/v1/purchases', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newPurchase)
+    })
+    .then(res => res.json())
+    .catch(() => this.setState({ error : 'There was an issue adding your purchase'} ))
   }
 
   componentDidMount() {

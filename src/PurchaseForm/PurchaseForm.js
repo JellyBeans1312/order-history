@@ -14,7 +14,11 @@ export class PurchaseForm extends Component {
   addPurchase = e => {
     e.preventDefault()
     const newPurchase = {
-      ...this.state,
+      // ...this.state,
+      img:this.state.imgUrl,
+      name: this.state.name,
+      price: parseInt(this.state.price),
+      description: this.state.description,
       id: Date.now()
     }
     this.props.addPurchaseToState(newPurchase)
