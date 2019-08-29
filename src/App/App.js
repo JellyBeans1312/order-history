@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import CardContainer from '../CardContainer/CardContainer'
+import CardContainer from '../CardContainer/CardContainer';
+import PurchaseForm from '../PurchaseForm/PurchaseForm';
 
 class App extends Component {
   constructor() {
