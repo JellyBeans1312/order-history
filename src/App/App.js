@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import CardContainer from '../CardContainer/CardContainer';
 import { PurchaseForm } from '../PurchaseForm/PurchaseForm';
+import { fetchPurchases, deletePurchases, postPurchases } from '../apiCalls/apiCalls'
 
 class App extends Component {
   constructor() {
@@ -24,32 +25,19 @@ class App extends Component {
   }
 
   postPurchase = newPurchase => {
-    console.log(newPurchase)
-    fetch('http://localhost:3001/api/v1/purchases', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newPurchase)
-    })
-    .then(res => res.json())
+    postPurchases(newPurchase)
     .catch(() => this.setState({ error : 'There was an issue adding your purchase'} ))
   }
 
   deletePurchase = id => {
-    fetch(`http://localhost:3001/api/v1/purchases/${id}`, {
-      method: 'DELETE'
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
+    deletePurchases(id)
     .catch(() => this.setState({ error: 'There was an issue removing your purchase' }))
   }
 
   componentDidMount() {
-    fetch('http://localhost:3001/api/v1/purchases')
-    .then(res => res.json())
+    fetchPurchases()
     .then(purchases => this.setState({ purchases }))
-    .catch(error => this.setState({error: 'There was an issue gathering your purchases'}))
+    .catch(() => this.setState({error: 'There was an issue gathering your purchases'}))
   }
   render() {
     return (

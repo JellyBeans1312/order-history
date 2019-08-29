@@ -26,4 +26,5 @@ describe('App', () => {
     expect(wrapper.state('purchases').length).toEqual(1)
   });
 
+  it('should')
 });
