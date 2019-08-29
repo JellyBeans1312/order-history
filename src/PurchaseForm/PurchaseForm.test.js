@@ -17,19 +17,30 @@ describe('PurchaseForm', () => {
     expect(wrapper).toMatchSnapshot() 
   });
 
-  it.skip('should call addPurchaseToState with a new purchase object', () => {
+  it('should call addPurchase when button is clicked', () => {
     const newPurchase = {
       imgUrl: 'ello',
       name: 'guvna',
       price: 'biscuit',
       description: 'for ya?'
     }
-    wrapper.instance().addPurchase()
-    expect(wrapper.props().addPurchaseToState).toHaveBeenCalled()
+    wrapper.instance().addPurchase = jest.fn();
+    wrapper.instance().forceUpdate();
+    const mockEvent = { 
+      preventDefault: jest.fn() 
+    };
+
+    wrapper.find('button').simulate('click', mockEvent);
+
+    expect(wrapper.instance().addPurchase).toHaveBeenCalledWith(mockEvent);
   });
 
   it('should clear state when clearForm is called',() => {
     wrapper.instance().clearForm()
     expect(wrapper.state()).toEqual({"description": "", "imgUrl": "", "name": "", "price": ""})
   });
+
+  it('should call handle change when change happens', () => {
+    
+  })
 });
