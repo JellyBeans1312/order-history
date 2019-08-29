@@ -12,6 +12,10 @@ class App extends Component {
     }
   }
 
+  addPurchase = newPurchase => {
+    this.setState({ purchases: [...this.state.purchases, newPurchase] })
+  }
+
   componentDidMount() {
     fetch('http://localhost:3001/api/v1/purchases')
     .then(res => res.json())
@@ -24,7 +28,7 @@ class App extends Component {
         <header>
           <h1 className='app-title'>My Order History</h1>
           <div className='purchase-form'>
-            <PurchaseForm />
+            <PurchaseForm addPurchaseToState={this.addPurchase}/>
           </div>
         </header>
         {this.state.error && <h1>{this.state.error}</h1>}

@@ -11,6 +11,16 @@ export class PurchaseForm extends Component {
     }
   }
 
+  addPurchase = e => {
+    e.preventDefault()
+    const newPurchase = {
+      ...this.state,
+      id: Date.now()
+    }
+    this.props.addPurchaseToState(newPurchase)
+    this.setState({ imgUrl: '', name: '', price: '', description: ''})
+  }
+
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -46,7 +56,7 @@ export class PurchaseForm extends Component {
           value={this.state.price}
           onChange={this.handleChange}
           />
-          <button>Add Purchase</button>
+          <button onClick={this.addPurchase}>Add Purchase</button>
       </form>
     )
   }
