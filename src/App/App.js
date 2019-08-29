@@ -16,6 +16,12 @@ class App extends Component {
     this.setState({ purchases: [...this.state.purchases, newPurchase] })
     this.postPurchase(newPurchase)
   }
+  
+  removePurchase = id => {
+    const filtered = this.state.purchases.filter(purchase => purchase.id !== id)
+    this.setState({ purchases: filtered })
+    this.deletePurchase(id)
+  }
 
   postPurchase = newPurchase => {
     console.log(newPurchase)
@@ -28,6 +34,15 @@ class App extends Component {
     })
     .then(res => res.json())
     .catch(() => this.setState({ error : 'There was an issue adding your purchase'} ))
+  }
+
+  deletePurchase = id => {
+    fetch(`http://localhost:3001/api/v1/purchases/${id}`, {
+      method: 'DELETE'
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(() => this.setState({ error: 'There was an issue removing your purchase' }))
   }
 
   componentDidMount() {
@@ -47,7 +62,7 @@ class App extends Component {
         </header>
         {this.state.error && <h1>{this.state.error}</h1>}
         <div className='purchase-container'>
-          <CardContainer purchases={this.state.purchases}/>
+          <CardContainer purchases={this.state.purchases} removePurchase={this.removePurchase}/>
         </div>
       </div>
     );
