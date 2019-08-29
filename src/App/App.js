@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import CardContainer from '../CardContainer/CardContainer'
+import CardContainer from '../CardContainer/CardContainer';
+import { PurchaseForm } from '../PurchaseForm/PurchaseForm';
 
 class App extends Component {
   constructor() {
@@ -9,6 +10,10 @@ class App extends Component {
       purchases: [],
       error: ''
     }
+  }
+
+  addPurchase = newPurchase => {
+    this.setState({ purchases: [...this.state.purchases, newPurchase] })
   }
 
   componentDidMount() {
@@ -23,7 +28,7 @@ class App extends Component {
         <header>
           <h1 className='app-title'>My Order History</h1>
           <div className='purchase-form'>
-
+            <PurchaseForm addPurchaseToState={this.addPurchase}/>
           </div>
         </header>
         {this.state.error && <h1>{this.state.error}</h1>}
